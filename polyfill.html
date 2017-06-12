@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="./polyfill.js"></script>
+</head>
+<body>
+    <div id='div'>this is div1</div>
+    <div class='div'>this is div2</div>
+    <div class='div'>this is div3</div>
+    <script type="text/javascript">
+    var div = $('div');
+    setTimeout(function () {
+        div.hide();
+    }, 2000);
+    </script>
+</body>
+</html>

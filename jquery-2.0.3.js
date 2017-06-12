@@ -3017,7 +3017,7 @@ jQuery.Callbacks = function( options ) {
 			// Call all callbacks with the given context and arguments
 			fireWith: function( context, args ) {
 				if ( list && ( !fired || stack ) ) {
-					args = args || [];
+					args = args || []; 
 					args = [ context, args.slice ? args.slice() : args ];
 					if ( firing ) {
 						stack.push( args );
@@ -3539,16 +3539,16 @@ jQuery.fn.extend({
 					attrs = elem.attributes;
 					for ( ; i < attrs.length; i++ ) {
 						name = attrs[ i ].name;
-
 						if ( name.indexOf( "data-" ) === 0 ) {
 							name = jQuery.camelCase( name.slice(5) );
-							dataAttr( elem, name, data[ name ] );
+
+							// 如果data[name]为空：就去html中找，并且设置到cache中
+							dataAttr( elem, name, data[ name ] ); 
 						}
 					}
 					data_priv.set( elem, "hasDataAttrs", true );
 				}
 			}
-
 			return data;
 		}
 
@@ -3559,6 +3559,8 @@ jQuery.fn.extend({
 			});
 		}
 
+		// 传两个参数: 设置所有，返回this(jquery对象)
+		// 一个参数：获取第一个，返回value
 		return jQuery.access( this, function( value ) {
 			var data,
 				camelKey = jQuery.camelCase( key );
@@ -3650,6 +3652,7 @@ function dataAttr( elem, key, data ) {
 	}
 	return data;
 }
+
 jQuery.extend({
 	queue: function( elem, type, data ) {
 		var queue;
@@ -3683,7 +3686,7 @@ jQuery.extend({
 
 		// If the fx queue is dequeued, always remove the progress sentinel
 		if ( fn === "inprogress" ) {
-			fn = queue.shift();
+			fn = queue.shift(); 
 			startLength--;
 		}
 
@@ -3739,7 +3742,7 @@ jQuery.fn.extend({
 				jQuery._queueHooks( this, type );
 
 				if ( type === "fx" && queue[0] !== "inprogress" ) {
-					jQuery.dequeue( this, type );
+					jQuery.dequeue( this, type ); 
 				}
 			});
 	},
@@ -4431,7 +4434,7 @@ jQuery.event = {
 		}
 
 		// Nullify elem to prevent memory leaks in IE
-		elem = null;
+		elem = null; 
 	},
 
 	// Detach an event or set of events from an element
@@ -6793,7 +6796,7 @@ var
 // #8138, IE may throw an exception when accessing
 // a field from window.location if document.domain has been set
 try {
-	ajaxLocation = location.href;
+	ajaxLocation = location.href; // "http://localhost:63342/miaov/ajax/ajax.html"
 } catch( e ) {
 	// Use the href attribute of an A element
 	// since IE will modify it given document.location
@@ -6802,7 +6805,7 @@ try {
 	ajaxLocation = ajaxLocation.href;
 }
 
-// Segment location into parts
+// Segment location into parts, eg: ["http://localhost:63342", "http:", "localhost", "63342"]
 ajaxLocParts = rurl.exec( ajaxLocation.toLowerCase() ) || [];
 
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport

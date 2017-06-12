@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-2.0.3.js"></script>
+    <script>
+        $(function(){
+            console.log($.param({name:'fanlong','age':28}));
+            console.log( $.param( [{name:'a',value:'1'},{name:'b',value:'2'}]) );
+
+            console.log($('#form1').serializeArray())
+            console.log($('#form1').serialize());
+
+            console.log($("input:eq(1)").serializeArray());
+            console.log($("input:eq(1)").serialize());
+
+        });
+//        console.log( $({name:'fanlong'}) );
+    </script>
+</head>
+<body>
+    <form id="form1">
+        <input name="a" value="1" type="text"/>
+        <input name="b" value="2" type="text"/>
+        <br/>
+        <input type="radio" name="male" value="nan" checked/><label>nan</label>
+        <input type="radio" name="male" value="nv" /><label>nv</label>
+        <br/>
+        <input type="checkbox" name="favor1" value="basketball" checked/><label>basketball</label>
+        <input type='checkbox' name="favor2" value="football" checked><label>football</label>
+        <input type="checkbox" name="favor3" value="badmition"/><label>badmition</label>
+        <br/>
+        <select name="city">
+            <option value="beijing">beijing</option>
+            <option value="nanjing">nanjing</option>
+            <option value="shanghai" selected>shanghai</option>
+        </select>
+        <br/>
+        <input type="submit" value="tijiao"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <pre>
+    load/unload/beforeunload 只能绑定给window对象
+
+    load : { // 方式用jquery方式绑定img的onload事件 冒泡到 window.onload事件
+        noBubble : true, 
+    }
+    beforeunload : { // window.onbeforeunload
+        postDispatch : function () {
+
+        }
+    }
+    </pre>
+
+    <script>
+    var img = new Image(); // 元素节点
+    $(img).on('load', function () {
+        console.log('image.load');
+    })
+    img.src = 'http://s3m.mediav.com/galileo/212a31a97133de745ff54ab4af6b6fb5.jpg';
+
+    console.log(1, document.readyState);
+
+    window.onload = function () {
+        console.log('load.on');
+    }
+    window.addEventListener('load', function () {
+        console.log('load.add');
+    });
+    $(window).on('load', function () {
+        console.log('load.$');
+    });
+
+    console.log(3);
+
+    window.onunload = function () {
+        console.log('unload');
+    }
+    window.addEventListener('unload', function () {
+        console.log('unload');
+    });
+
+    window.onbeforeunload = function () {
+        console.log('beforeunload');
+    }
+    window.addEventListener('beforeunload', function () {
+        console.log('beforeunload');
+    });
+    </script>
+</body>
+</html>

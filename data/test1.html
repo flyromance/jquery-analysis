@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var obj = {value:1};
+    var arr = {};
+    arr['name'] = obj;
+    var obj1 = {};
+    Object.defineProperties(obj1,arr);
+    console.log(obj1);
+    obj1.name = 2;
+    console.log(obj1);
+</script>
+</body>
+</html>

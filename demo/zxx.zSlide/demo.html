@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>zSlide使用示例 &raquo; 张鑫旭-鑫空间-鑫生活</title>
+<link rel="stylesheet" href="css/jquery.zSlide-min.css" type="text/css" />
+<link rel="stylesheet" href="css/demo.css" type="text/css" />
+</head>
+
+<body>
+<div id="header" class="zsl_header" data-role="header"></div>
+<div id="slide1" class="zsl_slide slide" data-role="slide">
+	<h1 class="zsl_title">Fade列表测试</h1>
+    <div class="zsl_section">
+        <p class="zsl_fade fade" data-role="fade">这是data-role为fade的第1行元素</p>
+        <p class="zsl_fade fade" data-role="fade">这是data-role为fade的第2行元素</p>
+    </div>
+</div>
+<div id="slide2" class="zsl_slide slide" data-role="slide">
+	<h1 class="zsl_title">动态font-size测试</h1>
+    <div class="zsl_section">
+    	<pre>var fn = {
+    a: 1,
+    b: function() {}        
+}</pre>
+		<p>这是一行文字</p>
+        <p>这是另外一行文字</p>
+    </div>
+</div>
+<div id="slide3" class="zsl_slide slide" data-role="slide">
+	<h1 class="zsl_title">图片的动态加载</h1>
+    <div class="zsl_section">
+        <p><img src="http://www.zhangxinxu.com/study/image/pixel.gif" class="zsl_demo_image" width="512" height="381" data-url="http://image.zhangxinxu.com/image/study/s/s512/mm1.jpg" /></p>
+    </div>
+</div>
+
+<div id="footer" class="zsl_footer" data-role="footer">
+	<!-- 请保留版权信息 -->
+	&copy; <a href="http://www.zhangxinxu.com/">zhangxinxu</a>
+</div>
+<script src="js/jquery-min.js"></script>
+<script src="js/jquery.zSlide-min.js"></script>
+<script>
+$(function() {
+	$("#slide3").bind("slideload", function() {
+		var that = $(this);
+		//为了清楚看到延时加载的效果，这里设置了一个1秒的定时器
+		setTimeout(function() {
+			that.find("img").each(function() {
+				var urlImage = "";
+				if (urlImage = $(this).attr("data-url")) {
+					$(this).attr("src", urlImage).removeAttr("data-url");
+				}
+			});	
+		}, 1000);
+	});
+	$.zSlide.init();	
+});
+</script>
+</body>
+</html>

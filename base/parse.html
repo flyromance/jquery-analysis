@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    var rsingleTag = (/^<(\w+)\s*\/?>(?:<\/\1>|)$/);
+    var parseHTML = function( data, context, keepScripts ) {
+        if ( !data || typeof data !== "string" ) {
+            return null;
+        }
+        if ( typeof context === "boolean" ) {
+            keepScripts = context;
+            context = false;
+        }
+        context = context || document;
+
+        var parsed = rsingleTag.exec( data ),
+                scripts = !keepScripts && [];
+
+        // Single tag
+        if ( parsed ) {
+            return [ context.createElement( parsed[1] ) ];
+        }
+
+        parsed = jQuery.buildFragment( [ data ], context, scripts );
+
+        if ( scripts ) {
+            jQuery( scripts ).remove();
+        }
+
+        return jQuery.merge( [], parsed.childNodes );
+    },
+
+    parseJSON = JSON.parse,
+
+        // Cross-browser xml parsing
+    parseXML = function( data ) {
+        var xml, tmp;
+        if ( !data || typeof data !== "string" ) {
+            return null;
+        }
+
+        // Support: IE9
+        try {
+            tmp = new DOMParser();
+            xml = tmp.parseFromString( data , "text/xml" );
+        } catch ( e ) {
+            xml = undefined;
+        }
+
+        if ( !xml || xml.getElementsByTagName( "parsererror" ).length ) {
+            jQuery.error( "Invalid XML: " + data );
+        }
+        return xml;
+    };
+
+    console.log(rsingleTag.exec( '<li></li13>' ));
+</script>
+</body>
+</html>

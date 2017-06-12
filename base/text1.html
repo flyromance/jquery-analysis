@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+<ul id="list">
+    <li>adfsdf</li>
+    <li>adfsdf</li>
+    <li>adfsdf</li>
+    <li>adfsdf</li>
+</ul>
+<script type="text/javascript">
+    var arr = [1,2,3,4];
+    var obj = {name:'fanlong'};
+    var fn = function(){return false;};
+    fn.sayName = function(){return true;};
+    fn.prototype.sayName = function(){return false;};
+    for(var i in fn){
+        console.log(typeof i);
+    }
+    var obj = {
+        0:123,
+        4:312
+    }
+    var option = [1,12,123,1234];
+    var last = $.extend(true,option,obj);
+    console.log(last);
+    console.log(last.name == option.name);
+    console.log($.isArray(last));
+
+    var example = [0,0,0,0];
+    // array.every filter some not
+
+    var arr1 = arr.forEach(function(item,index){
+        example[index] = item;
+        return false;
+    });
+
+    var arr2 = arr.map(function(item,index){
+        return ;
+    });
+
+    var arr3 = arr.filter(function(item, index){
+        if(item > 1){return true}
+        return false;
+    });
+    var arr4 = arr.some(function(item,index){
+        return true;
+    })
+    console.log(arr); // no changed
+    console.log(arr1); // undefined
+    console.log(arr2); // new array
+    console.log(example);
+    console.log(arr3);
+
+    var foo = new function(){};
+    var foo1 = new Object();
+    console.log($.isEmptyObject([]));
+    console.log($.isPlainObject(foo1));
+
+    function isArraylike( obj ) {
+
+        // Support: iOS 8.2 (not reproducible in simulator)
+        // `in` check used to prevent JIT error (gh-2145)
+        // hasOwn isn't used here due to false negatives
+        // regarding Nodelist length in IE
+        var length = "length" in obj && obj.length,
+                type = jQuery.type( obj );
+
+        if ( type === "function" || jQuery.isWindow( obj ) ) {
+            return false;
+        }
+
+        if ( obj.nodeType === 1 && length ) {
+            return true;
+        }
+
+        return type === "array" || length === 0 ||
+                typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+    }
+    var list = document.getElementById('list');
+    console.log();
+    var lists = document.getElementsByTagName('li');
+    console.log(lists);
+    console.log(isArraylike(lists));
+    var rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/;
+    var match = rquickExpr.exec('#div');
+    console.log(match);
+
+    console.log($('li'));
+    console.log($(lists));
+    console.log($.makeArray(lists,{}));
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="../jquery-2.0.3.js"></script>
+<script>
+
+/*jQuery.extend({
+	queue                push()
+	dequeue              shift()
+	_queueHooks
+});
+jQuery.fn.extend({
+	queue
+	dequeue
+	delay
+	clearQueue
+	promise
+});*/
+
+//队列中存储的都是函数
+
+$(function(){
+	
+	/*function aaa(){
+		alert(1);
+	}
+	
+	function bbb(){
+		alert(2);
+	}*/
+	
+	//$.queue( document , 'q1' , aaa );   
+	//$.queue( document , 'q1' , bbb );
+	//$.queue( document , 'q1' , [aaa,bbb] );   
+	//console.log(   $.queue( document , 'q1' )   );
+	//$.dequeue( document,'q1' );   //aaa()
+	//$.dequeue( document,'q1' );   //bbb()
+	
+	
+	var data_user = {
+		expendo: 'jquery1231231231231.12312313',
+		cache: {
+			1: {
+				fxqueue: [], // 动画队列
+				id: 'xxx', // data 数据
+				events: { // 事件数据
+					click: [],
+					keydown: [],
+				},
+			}
+		},
+		key: function () {},
+		set: function () {},
+		get: function () {},
+		access: function () {},
+		remove: function () {},
+	}
+	
+	
+	function aaa(next){
+		alert(1);
+		$(document).queue(function(next) {alert(3); next()});
+		next();
+	}
+	
+	function bbb(){
+		alert(2);
+	}
+
+	// $(document).queue('q1', aaa).queue('q1', bbb).dequeue('q1');
+	$(document).queue(aaa).queue(bbb);
+
+
+
+	// $(document).queue('q1',aaa).queue(function(next){
+	// 	alert(123);
+	// }).queue('q1',bbb);
+
+	//console.log(  $(document).queue('q1')  );
+
+	// $(document).dequeue('q1');
+	// $(document).dequeue('q1');
+	
+});
+
+
+//[   ]
+//	function aa(){
+//		alert(1);
+//	}
+//    function bb(){
+//		alert(2);
+//	}
+//	$.queue(document,"q1",aa);
+//
+//	console.log($.queue(document,"q1"));
+
+//	$.dequeue(document,"q1");
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

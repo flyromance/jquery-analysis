@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body><div id="div1">
+    <span>span0</span><span id="span1">span1</span><span id="span2">replace before</span>
+</div><div class="div">div</div>
+<div class="div" id="insert">div insert</div>
+<div name="div">div name</div>
+<script type="text/javascript">
+    // 获取
+    var getBody = document.getElementsByTagName('body')[0];
+    var getdivID = document.getElementById('div1');
+    var getSpan1 = document.getElementById('span1');
+    var getSpan2 = document.getElementById('span2');
+    var getInsert = document.getElementById('insert');
+    var getdivTag = document.getElementsByTagName('div');
+    var getdivName = document.getElementsByName('div')[0];
+    var getdivClass = document.getElementsByClassName('div');
+    var querySeletor = document.querySelectorAll('.div');  // querySelector选取第一个, ..All选取所有匹配的
+    console.log(querySeletor);
+    console.log(getdivTag.length);
+
+    //创建节点
+    var createDiv = document.createElement('div');
+    var createText = document.createTextNode('create text');
+    var createAttr = document.createAttribute('id');
+    //设置属性节点的值
+    createAttr.nodeValue = 'create-id';
+    //设置属性节点
+    createDiv.setAttributeNode(createAttr);
+    //添加文本节点
+    createDiv.appendChild(createText);
+    //设置属性值
+    createDiv.className = 'fanlong';
+    createDiv.setAttribute('class', 'fanlong2046');
+    createDiv.setAttribute("title",'');
+    createDiv.removeAttribute('title');
+    console.log(createDiv.getAttribute('title'));
+    for(var i=0; i<createDiv.attributes.length; i++){
+        if(createDiv.attributes[i].nodeName == "id"){
+            createDiv.attributes[i].nodeValue = 'flyromance';
+        };
+    }
+    console.log(createDiv.attributes);
+
+    //添加元素节点
+    getBody.appendChild(createDiv);
+
+    //删除节点； 参数不能为空
+    getdivID.removeChild(getSpan1);
+
+    //复制节点; false：不包含子节点（文本节点也算），但是属性节点也克隆； true：所有节点
+    var cloneDiv = createDiv.cloneNode(true);
+
+    //替换节点;
+    getdivID.replaceChild(cloneDiv, getSpan2);
+
+
+    //插入节点；
+    var cloneDiv1 = createDiv.cloneNode(true);
+    getBody.insertBefore(cloneDiv1,getInsert);
+
+    //为什么设置在后，对前面先克隆的有影响；
+    createDiv.setAttribute('style','color:red');
+
+    //节点指针
+    console.log(getdivID.firstChild); //有空格或者是回车，第一个节点就是文本节点
+    console.log(getdivID.lastChild);  //同上
+    console.log(getdivID.childNodes); //返回子节点，不包括后代节点；jq中也是如此，只不过jq过滤了文本节点；
+    console.log(getdivID.sibling);  // 没有此方法！！！返回undefined
+    console.log(getdivID.nextSibling);  //想要得到想要的效果，必须要过滤空白文本节点或回车
+    console.log(getdivID.previousSibling); //同上, 如果没有就返回null
+
+
+    var frag = document.createDocumentFragment();
+    console.log(frag.nodeType);  // 11
+    frag.appendChild(getdivName);  // 相当于吧getdivName移动到了最后
+    getBody.appendChild(frag);
+</script>
+</body>
+</html>

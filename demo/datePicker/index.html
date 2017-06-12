@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+	<head>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<title>第67款插件：jquery.datePicker.js日历控件应用text文本框弹出日历表与默认显示日历表</title>
+		<!--[if lte IE 6]>
+			<link type="text/css" rel="stylesheet" media="screen" href="style/ie.css" />
+		<![endif]-->
+		<link rel="stylesheet" type="text/css" href="http://j.sxjsjlxh.com/demo/css.css" />
+		<script type="text/javascript" language="javascript" src="js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" language="javascript" src="js/jquery.datePicker-min.js"></script>
+		<link type="text/css" href="css/datepicker.css" rel="stylesheet" />
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+				$(".datepicker").datePicker({
+					inline:true,
+					selectMultiple:false
+				});
+				
+				$("#datepicker").datePicker({
+					clickInput:true
+				});
+				
+			});
+		</script>
+		
+	</head>
+	
+	<body>
+		
+		<div id="header">
+			<h1>第67款插件：jquery.datePicker.js日历控件应用text文本框弹出日历表与默认显示日历表</h1>
+		</div>
+		
+		<div class="container">
+			<div id="container" style="width:600px;marging:0 auto;">
+				<!--start-->
+				
+				<h2>jquery.datePicker日历控件应用文本框</h2>
+				<input type="text" name="" value="" id="datepicker" />
+				
+				<div style="height:240px;"></div>
+				
+				<h2>jquery.datePicker日历控件应用日历表</h2>
+				<div class="datepicker"></div>
+				
+				<!--end-->
+			</div>
+		</div>
+		
+		<div id="footer"></div>
+		
+	</body>
+</html>

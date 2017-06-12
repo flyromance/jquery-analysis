@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="../jquery-1.11.3.js"></script>
+</head>
+
+<body>
+<pre>
+	mouserenter / mouserleave : { 
+		// 不冒泡，但是有些浏览器不支持(ie 6-10)
+		// 所以jquery把它列为特殊事件处理
+		// 非委托 or 委托绑定：背后都是用mouseover/mouseout绑定的
+		delegateType: 'mouseover / mouseout',
+		bindType: 'mouseover / mouseout'
+	}
+
+	mouseover / mouseout: {
+		// 所有浏览器都支持 mouseover，但是冒泡
+	}
+
+	mouseup / mousedown : {
+
+	}
+
+	mousemove : {
+
+	}
+</pre>
+<div id="outer">
+    div
+    <div id="inner">
+        p
+        <span>span</span>
+        <input  type="text" id="input">
+    </div>
+</div>
+<script>
+		
+
+
+	$('#outer').on('mouseenter',function (e) {
+		console.log('mouseenter.outer');
+		// console.log(e.target, e.relatedTarget);
+		// console.log(e.toElement, e.fromElement);
+	});
+
+	$('#inner').on('mouseenter',function () {
+		console.log('mouseenter.inner');
+	});
+	
+	// $(document).on('mousedown', function (e) {
+	// 	console.log('mouse.which:', e.which);
+	// });
+	
+
+
+
+</script>
+</body>
+</html>

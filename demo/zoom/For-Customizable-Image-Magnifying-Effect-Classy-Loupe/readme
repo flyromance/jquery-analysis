@@ -1,0 +1,11 @@
+The jQuery ClassyLoupe is a jQuery plugin that gives you the ability to add
+zoom on hover ability for your photos with single line of code. With ClassyLoupe
+you have the ability to control the zoom level and loupe size via mouse scroll
+which gives you the opportunity to enlarge areas that you might be interested in.
+
+@name ClassyLoupe
+@package jQuery plugin
+@author Marius Stanciu - Sergiu <marius@class.pm>
+@website http://www.class.pm/
+@version 1.2.0
+@license MIT www.class.pm/LICENSE-MIT

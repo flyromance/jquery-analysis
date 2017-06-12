@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <select id="select">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+    <script>
+    $('#select').on('change', function () {
+        console.log(this.value);
+    });
+
+    
+    </script>
+</body>
+</html>

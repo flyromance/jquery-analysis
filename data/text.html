@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-2.0.3.js"></script>
+    <script type="text/javascript">
+        $(function(){
+//            $('#div1').data('name','fanlong2046');
+            console.log($('#div1').get()[0].getAttribute('data-name'));
+            console.log($('#div1').get()[0].dataset.fanLong);
+//            console.log($('#div1').attr('data-name'));
+            $('#div1').data('age',28);
+            console.log($('#div1').data());
+        });
+
+/*        var obj = {name: "fanlong"};
+        Object.freeze(obj);
+        obj.name = "fanlong2046";
+        console.log(obj.name);*/
+        var obj = {name : "fanlong2046"};
+        var obj1 = {name :'123'};
+        Object.defineProperties(obj, {
+            name:{
+                set:function(name){
+                    obj1.name = name;
+                },
+                get:function(){
+                    console.log(obj1.name);
+                    return 'fanlong'
+                },
+//            value:'fandisaier',
+                configurable:true,
+//            wirtabel: true,
+                enumerable: true
+            },
+            0: {
+                get:function(){
+                    return {};
+                }
+            }
+        });
+
+        obj.name = 'fandisaier';
+//        console.log(obj.name);
+//        console.log(obj);
+//        console.log(obj1);
+//        console.log(obj1.name);
+//        console.log(jQuery.expando);
+    </script>
+</head>
+<body>
+<div id="div1" data-name="flyromance" data-fan-long="2046" data-age="{age:28}">div1</div>
+<!--<script src="data.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function LazyMan(name) {
+        this.name = name;
+        this.storage = {};
+        this.queue = []; // 队列
+        this.lastId = null;
+        this.num = 1;
+        console.log('hi! this is ' + name);
+    }
+
+    function log(name, type, value) {
+        console.log(name + ': ' + type + ' ' + value);
+    }
+
+    LazyMan.prototype = {
+        constructor: LazyMan,
+        getId: function () {
+            return this.num++;
+        },
+        eat: function (val) {
+            var that = this;
+            var lastId = that.lastId;
+
+            if (lastId) {
+                that.storage[lastId] = that.storage[lastId] || {};
+                that.storage[lastId]['eat'] = that.storage[lastId]['eat'] || [];
+                that.storage[lastId]['eat'].push({type: 'eat', value: val});
+            } else {
+                log(that.name, 'eat', val);
+            }
+
+            return that;
+        },
+        sleep: function (num) {
+            var that = this;
+
+            var lastId = that.getId();
+
+            function _queue() {
+
+                setTimeout(function () {
+                    log('', 'sleep', num + 's');
+                    var queue = that.storage[lastId],
+                        i, lens, item, obj;
+
+                    for (var key in queue) {
+                        obj = queue[key];
+                        for (i = 0, lens = obj.length; i < lens; i++) {
+                            item = obj[i];
+                            console.log(that.name, item.type, item.value);
+                        }
+                    }
+
+                    var index = that.queue.indexOf(_queue);
+                    that.queue.splice(index, 1);
+
+                    if (!that.queue.length) {
+                        that.lastId = null;
+                    } else {
+                        that.queue[0].call();
+                    }
+                }, num * 1000);
+            }
+
+            that.queue.push(_queue);
+
+            if (!that.lastId) {
+                that.queue[0].call();
+            }
+
+            that.lastId = lastId;
+
+            return that;
+        }
+    };
+
+    function lazyman(name) {
+        return new LazyMan(name);
+    }
+
+    //    var lazyman_1 = lazyman('fanlong').eat('meet').sleep(1).eat('ddd').eat('12312').sleep(2).eat('sss').sleep(3).eat('ggg');
+</script>
+
+<script>
+    function _LazyMan(name) {
+        this.tasks = [];
+        var self = this;
+
+        var fn = (function (n) {
+            var name = n;
+            return function () {
+                console.log("Hi! This is " + name + "!");
+                self.next();
+            }
+        })(name);
+
+        this.tasks.push(fn);
+
+        setTimeout(function () {
+            self.next();
+        }, 0); // 在下一个事件循环启动任务
+    }
+
+    /* 事件调度函数 */
+    _LazyMan.prototype.next = function () {
+        var fn = this.tasks.shift();
+        fn && fn();
+    };
+
+    _LazyMan.prototype.eat = function (name) {
+        var self = this;
+        var fn = (function (name) {
+            return function () {
+                console.log("Eat " + name + "~");
+                self.next()
+            }
+        })(name);
+        this.tasks.push(fn);
+        return this; // 实现链式调用
+    };
+
+    _LazyMan.prototype.sleep = function (time) {
+        var self = this;
+        var fn = (function (time) {
+            return function () {
+                setTimeout(function () {
+                    console.log("Wake up after " + time + "s!");
+                    self.next();
+                }, time * 1000);
+            }
+        })(time);
+        this.tasks.push(fn);
+        return this;
+    };
+
+    _LazyMan.prototype.sleepFirst = function (time) {
+        var self = this;
+        var fn = (function (time) {
+            return function () {
+                setTimeout(function () {
+                    console.log("Wake up after " + time + "s!");
+                    self.next();
+                }, time * 1000);
+            }
+        })(time);
+
+        this.tasks.unshift(fn);
+        return this;
+    };
+
+    /* 封装 */
+    function _lazyMan(name) {
+        return new _LazyMan(name);
+    }
+
+    var lazyman_2 = _lazyMan('flyromance').sleepFirst(1).eat('sdfsd');
+</script>
+
+</body>
+</html>

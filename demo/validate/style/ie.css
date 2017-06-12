@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.errormsg {
+	/*background:transparent url(../img/is.gif) no-repeat scroll -38px -1798px;*/
+	background:url(../img/error.png) no-repeat;
+	margin-left:.8em;
+	float:left;		/* 在这里firefox下使用none正常显示，IE下需要使用left */
+	color:red;
+	text-align:left;
+	text-indent:1.5em;
+	display:table;
+}
+.right {
+	background:url(../img/right.png) no-repeat;
+	margin-left:.8em;
+	float:left;
+	text-align:left;
+	text-indent:1.5em;
+	display:table;
+}
+

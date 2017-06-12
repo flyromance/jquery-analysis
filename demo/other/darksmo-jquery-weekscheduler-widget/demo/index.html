@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- 1. Make sure UTF-8 encoding is specified -->
+        <meta charset="utf-8">
+        <title>jQuery Week Scheduler Demo</title>
+
+        <!-- 2. Include CSS -->
+        <link type="text/css" rel="stylesheet" href="/dist/jquery.weekSchedulerWidget.css">
+
+    </head>
+    <body>
+        <!-- 3. This is where your widget will be rendered -->
+        <div id="widget"></div>
+
+        <!-- 4. Add jQuery -->
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+        <!-- 5. Add .js after jQuery -->
+        <script src="/src/jquery.weekSchedulerWidget.js"></script>
+
+        <!-- 6. setup the widget -->
+        <script>
+            $('#widget').weekSchedulerWidget({
+                /* 
+                 * optional: the labels displayed in the widget 
+                 */
+                'localization' : {
+                    title: 'Schedule Item',
+                    week: 'Week',
+                    days: 'Days',
+                    time: 'Time',
+                    hour: 'Hour',
+                    minute: 'Minute',
+                    confirm: 'Add',
+                    cancel: 'Cancel',
+                    to: 'to',
+                    /* 
+                     * Must start with the first day specified in
+                     * firstDayOfWeek and end with the one corresponding to
+                     * lastDayOfWeek 
+                     * */
+                    dayNames: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    monthNames: ['January', 'February', 'March', 'April',
+                        'May', 'June', 'July', 'August', 'September', 'October',
+                        'November', 'December'
+                    ]
+                },
+                /* 
+                 * optional: the granularity of the minutes picker. In this
+                 * case the user can schedule at the 15th minute, i.e.: 00,
+                 * 15, 30, 45
+                 */
+                minutesPrecision: 15,
+                /*
+                 * The day of the week we want to start from
+                 */
+                startDate: new Date(),
+                /*
+                 * The day of the week we want to end to
+                 */
+                endDate: new Date(Date.parse("1/1/2018")),
+                /*
+                 * 0 = sunday  6 = Saturday
+                 */
+                firstDayOfWeek: 1,
+                lastDayOfWeek: 0,
+                /*
+                 * All the followings are optional as well
+                 */
+                hideOnStart: false,
+                onBeforeShow: function () { return true; }, // true: can show
+                onAfterShow: function () {  },
+                onBeforeHide: function () { return true; }, // true: can hide 
+                onAfterHide: function () {  },
+            });
+
+        </script>
+    </body>
+</html>

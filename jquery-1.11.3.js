@@ -79,7 +79,7 @@ var
 
 	// Matches dashed string for camelizing
 	rmsPrefix = /^-ms-/,
-	rdashAlpha = /-([\da-z])/gi,
+    rdashAlpha = /-([\da-z])/gi,
 
 	// Used by jQuery.camelCase as callback to replace()
 	fcamelCase = function( all, letter ) {
@@ -201,7 +201,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 	for ( ; i < length; i++ ) {
 		// Only deal with non-null/undefined values
 		if ( (options = arguments[ i ]) != null ) {
-			// Extend the base object
+			// Extend the base-shili object
 			for ( name in options ) {
 				src = target[ name ];
 				copy = options[ name ];
@@ -216,7 +216,6 @@ jQuery.extend = jQuery.fn.extend = function() {
 					if ( copyIsArray ) {
 						copyIsArray = false;
 						clone = src && jQuery.isArray(src) ? src : [];
-
 					} else {
 						clone = src && jQuery.isPlainObject(src) ? src : {};
 					}
@@ -2675,14 +2674,12 @@ function winnow( elements, qualifier, not ) {
 			/* jshint -W018 */
 			return !!qualifier.call( elem, i, elem ) !== not;
 		});
-
 	}
 
 	if ( qualifier.nodeType ) {
 		return jQuery.grep( elements, function( elem ) {
 			return ( elem === qualifier ) !== not;
 		});
-
 	}
 
 	if ( typeof qualifier === "string" ) {
@@ -2792,6 +2789,7 @@ var rootjQuery,
 			}
 
 			// Match html or make sure no context is specified for #id
+			// 为什么要!context? 因为：只有document才有getElementById
 			if ( match && (match[1] || !context) ) {
 
 				// HANDLE: $(html) -> $(array)
@@ -3252,7 +3250,7 @@ jQuery.Callbacks = function( options ) {
 			// Call all callbacks with the given context and arguments
 			fireWith: function( context, args ) {
 				if ( list && ( !fired || stack ) ) {
-					args = args || [];
+                    args = args || [];
 					args = [ context, args.slice ? args.slice() : args ];
 					if ( firing ) {
 						stack.push( args );
@@ -4365,6 +4363,7 @@ jQuery.event = {
 			special = jQuery.event.special[ type ] || {};
 
 			// handleObj is passed to all event handlers
+			// $.expr.match.needsContext -> /^[\x20\t\r\n\f]*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\([\x20\t\r\n\f]*((?:-\d)?\d*)[\x20\t\r\n\f]*\)|)(?=[^-]|$)/i
 			handleObj = jQuery.extend({
 				type: type,
 				origType: origType,
@@ -4372,7 +4371,7 @@ jQuery.event = {
 				handler: handler,
 				guid: handler.guid,
 				selector: selector,
-				needsContext: selector && jQuery.expr.match.needsContext.test( selector ),
+				needsContext: selector && jQuery.expr.match.needsContext.test( selector ), 
 				namespace: namespaces.join(".")
 			}, handleObjIn );
 
@@ -4381,6 +4380,7 @@ jQuery.event = {
 				handlers = events[ type ] = [];
 				handlers.delegateCount = 0;
 
+				// $().on('focusin')就不会走if 里面的绑定操作，因为是走的setup内部的绑定操作
 				// Only use addEventListener/attachEvent if the special events handler returns false
 				if ( !special.setup || special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 					// Bind the global event handler to the element
@@ -4550,7 +4550,8 @@ jQuery.event = {
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
 		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
 
-			bubbleType = special.delegateType || type;
+			bubbleType = special.delegateType || type; 
+
 			if ( !rfocusMorph.test( bubbleType + type ) ) {
 				cur = cur.parentNode;
 			}
@@ -4575,7 +4576,8 @@ jQuery.event = {
 
 			// jQuery handler
 			handle = ( jQuery._data( cur, "events" ) || {} )[ event.type ] && jQuery._data( cur, "handle" );
-			if ( handle ) {
+
+			if ( handle ) { 
 				handle.apply( cur, data );
 			}
 
@@ -4822,6 +4824,7 @@ jQuery.event = {
 				event.relatedTarget = fromElement === event.target ? original.toElement : fromElement;
 			}
 
+			// button for ie: 1->left 4->middle 2-right
 			// Add which for click: 1 === left; 2 === middle; 3 === right
 			// Note: button is not normalized, so don't use it
 			if ( !event.which && button !== undefined ) {
@@ -4876,7 +4879,6 @@ jQuery.event = {
 				return jQuery.nodeName( event.target, "a" );
 			}
 		},
-
 		beforeunload: {
 			postDispatch: function( event ) {
 
@@ -4956,7 +4958,7 @@ jQuery.Event = function( src, props ) {
 
 	// Event type
 	} else {
-		this.type = src;
+		this.type = src; 
 	}
 
 	// Put explicitly provided properties onto the event object
@@ -5162,6 +5164,7 @@ if ( !support.changeBubbles ) {
 
 // Create "bubbling" focus and blur events
 if ( !support.focusinBubbles ) {
+
 	jQuery.each({ focus: "focusin", blur: "focusout" }, function( orig, fix ) {
 
 		// Attach a single capturing handler on the document while someone wants focusin/focusout
@@ -5249,9 +5252,11 @@ jQuery.fn.extend({
 			jQuery.event.add( this, types, fn, data, selector );
 		});
 	},
+
 	one: function( types, selector, data, fn ) {
 		return this.on( types, selector, data, fn, 1 );
 	},
+
 	off: function( types, selector, fn ) {
 		var handleObj, type;
 		if ( types && types.preventDefault && types.handleObj ) {
@@ -5289,6 +5294,7 @@ jQuery.fn.extend({
 			jQuery.event.trigger( type, data, this );
 		});
 	},
+
 	triggerHandler: function( type, data ) {
 		var elem = this[0];
 		if ( elem ) {
@@ -6449,7 +6455,7 @@ jQuery.swap = function( elem, options, callback, args ) {
 
 
 var
-		ralpha = /alpha\([^)]*\)/i,
+	ralpha = /alpha\([^)]*\)/i,
 	ropacity = /opacity\s*=\s*([^)]*)/,
 
 	// swappable if display is none or starts with table except "table", "table-cell", or "table-caption"
@@ -7128,7 +7134,7 @@ function createTween( value, prop, animation ) {
 	var tween,
 		collection = ( tweeners[ prop ] || [] ).concat( tweeners[ "*" ] ),
 		index = 0,
-		length = collection.length;
+		length = collection.length; 
 	for ( ; index < length; index++ ) {
 		if ( (tween = collection[ index ].call( animation, prop, value )) ) {
 
@@ -8628,6 +8634,7 @@ try {
 }
 
 // Segment location into parts
+// eg:  ["http://www.btime.com", "http:", "www.btime.com", undefined]
 ajaxLocParts = rurl.exec( ajaxLocation.toLowerCase() ) || [];
 
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
@@ -8886,17 +8893,19 @@ jQuery.extend({
 		*/
 
 		accepts: {
-			"*": allTypes,
+			"*": allTypes, // '*/*'
 			text: "text/plain",
 			html: "text/html",
 			xml: "application/xml, text/xml",
 			json: "application/json, text/javascript"
+            // script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
 		},
 
 		contents: {
 			xml: /xml/,
 			html: /html/,
 			json: /json/
+            // script: /(?:java|ecma)script/
 		},
 
 		responseFields: {
@@ -8920,6 +8929,11 @@ jQuery.extend({
 
 			// Parse text as xml
 			"text xml": jQuery.parseXML
+
+            // "text script": function( text ) {
+            //     jQuery.globalEval( text );
+            //     return text;
+            // }
 		},
 
 		// For options that shouldn't be deep extended:
@@ -9073,7 +9087,7 @@ jQuery.extend({
 		jqXHR.error = jqXHR.fail;
 
 		// Remove hash character (#7531: and string promotion)
-		// Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
+		// Add protocol if not provided (#5866: IE7 issue with protocol-less urls) : 没有protocol就加上当前页面上的protocol
 		// Handle falsy url in the settings object (#10093: consistency with old signature)
 		// We also use the url parameter if available
 		s.url = ( ( url || s.url || ajaxLocation ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
@@ -9166,9 +9180,9 @@ jQuery.extend({
 		// Set the Accepts header for the server, depending on the dataType
 		jqXHR.setRequestHeader(
 			"Accept",
-			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
-				s.accepts[ s.dataTypes[0] ] + ( s.dataTypes[ 0 ] !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
-				s.accepts[ "*" ]
+            s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
+                s.accepts[ s.dataTypes[0] ] + ( s.dataTypes[ 0 ] !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
+                s.accepts[ "*" ]
 		);
 
 		// Check for headers option
@@ -9630,7 +9644,7 @@ if ( xhrSupported ) {
 							xhr[ i ] = options.xhrFields[ i ];
 						}
 					}
-
+                    console.log(options.dataTypes);
 					// Override mime type if needed
 					if ( options.mimeType && xhr.overrideMimeType ) {
 						xhr.overrideMimeType( options.mimeType );
@@ -9831,7 +9845,7 @@ jQuery.ajaxTransport( "script", function(s) {
 					}
 				};
 
-				// Circumvent IE6 bugs with base elements (#2709 and #4378) by prepending
+				// Circumvent IE6 bugs with base-shili elements (#2709 and #4378) by prepending
 				// Use native DOM manipulation to avoid our domManip AJAX trickery
 				head.insertBefore( script, head.firstChild );
 			},
@@ -10342,6 +10356,9 @@ jQuery.noConflict = function( deep ) {
 if ( typeof noGlobal === strundefined ) {
 	window.jQuery = window.$ = jQuery;
 }
+
+
+
 
 return jQuery;
 

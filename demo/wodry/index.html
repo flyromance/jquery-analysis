@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>第95款插件：wodry.js是一个简单的文本翻转/文本旋转插件</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="http://www.ijquery.cn/css/css.css" />
+		<!-- start --> 
+		<script type="text/javascript" src="http://www.ijquery.cn/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="http://www.ijquery.cn/js/wodry/wodry.min.js"></script>
+		<style type="text/css">
+			.adjecting {
+			display: inline-block;
+			position: relative;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			-o-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			-webkit-transform-origin-x: 50%;
+			}
+			.adjecting .front-face, .adjecting .back-face {
+			display: inline-block;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			-ms-backface-visibility: hidden;
+			-o-backface-visibility: hidden;
+			backface-visibility: hidden;
+			}
+			.adjecting .front-face {
+			position: absolute;
+			}
+			.adjecting .back-face {
+			position: relative;
+			}
+		</style>
+		<!-- end --> 
+	</head>
+	
+	<body>
+		
+		<div id="header">
+			<h1>第95款插件：wodry.js是一个简单的文本翻转/文本旋转插件</h1>
+		</div>
+		<div id="container">
+			
+			<div class="h50 b1 p10">
+				<h2>rotateAll 各个方向翻转</h2>
+				<!-- start --> 
+				<div class="rotateAll">国际评价习近平访蒙：中国点穴式外交更务实 | 李克强：推销中国高铁我特别有底气 | 小米携手Ouya进军游戏市场：弱弱联手前途艰险</div>
+				<!-- end --> 
+			</div>
+			
+			<div class="h50 b1 p10 mt10">
+				<h2>rotateX 垂直方向翻转</h2>
+				<!-- start --> 
+				<div class="rotateX">国际评价习近平访蒙：中国点穴式外交更务实 | 李克强：推销中国高铁我特别有底气 | 小米携手Ouya进军游戏市场：弱弱联手前途艰险</div>
+				<!-- end --> 
+			</div>
+			
+			<div class="h50 b1 p10 mt10">
+				<h2>rotateY 水平方向翻转</h2>
+				<!-- start --> 
+				<div class="rotateY">国际评价习近平访蒙：中国点穴式外交更务实 | 李克强：推销中国高铁我特别有底气 | 小米携手Ouya进军游戏市场：弱弱联手前途艰险</div>
+				<!-- end --> 
+			</div>
+			
+			
+			<div class="h50 b1 p10 mt10">
+				<h2>rotateY方向翻转 且 回调函数 </h2>
+				<!-- start --> 
+				<div class="titleItems"> 国际评价习近平访蒙：中国点穴式外交更务实 | 李克强：推销中国高铁我特别有底气 | 小米携手Ouya进军游戏市场：弱弱联手前途艰险</div>
+				<!-- end --> 
+			</div>
+			
+			
+			<div class="h50 b1 p10 mt10">
+				<h2>scaleAll 方向翻转 逐渐增大</h2>
+				<!-- start --> 
+				<div class="scaleAll" style="width:100px;text-align:center;margin:0 auto;">国际评价习近平访蒙：中国点穴式外交更务实 | 李克强：推销中国高铁我特别有底气 | 小米携手Ouya进军游戏市场：弱弱联手前途艰险</div>
+				<!-- end --> 
+			</div>
+			
+			<div class="h50 b1 p10 mt10">
+				<h2>scaleX 方向翻转，如果是一行的话和scaleAll一样效果，但内容多了是段落就看出效果来了</h2>
+				<!-- start --> 
+				<div class="scaleX" style="width:100px;text-align:center;margin:0 auto;">国际评价习近平访蒙：中国点穴式外交更务实 | 李克强：推销中国高铁我特别有底气 | 小米携手Ouya进军游戏市场：弱弱联手前途艰险</div>
+				<!-- end --> 
+			</div>
+			
+			<div class="h50 b1 p10 mt10">
+				<h2>scaleY 方向翻转 垂直逐渐增大</h2>
+				<!-- start --> 
+				<div class="scaleY" style="width:100px;text-align:center;margin:0 auto;">国际评价习近平访蒙：中国点穴式外交更务实 | 李克强：推销中国高铁我特别有底气 | 小米携手Ouya进军游戏市场：弱弱联手前途艰险</div>
+				<!-- end --> 
+			</div>
+			
+			
+			
+		</div>
+		
+		
+		<script>
+			var counter = 0;
+			$('.rotateAll').wodry({
+				animation: 'rotateAll',
+				delay: 3000
+			});
+			$('.rotateX').wodry({
+				animation: 'rotateX',
+				delay: 3000,
+				animationDuration: 800
+			});
+			$('.rotateY').wodry({
+				animation: 'rotateY',
+				delay: 3000,
+				animationDuration: 300
+			});
+			$('.scaleAll').wodry({
+				animation: 'scaleAll',
+				delay: 3000,
+				animationDuration: 800
+			});
+			$('.scaleX').wodry({
+				animation: 'scaleX',
+				delay: 3000,
+				animationDuration: 800
+			});
+			$('.scaleY').wodry({
+				animation: 'scaleY',
+				delay: 3000,
+				animationDuration: 800
+			});
+			
+			$('.titleItems').wodry({
+				animation: 'rotateY',
+				delay: 3000,
+				animationDuration: 800,
+				callback: function() {
+					var color1 = '#ccff84',
+					color2 = '#a5dfff'
+					if (counter % 2 === 0) {
+						$('.titleItems .back-face').css({
+							color: color1
+						});
+						$('.titleItems .front-face').css({
+							color: color2
+						});
+						} else {
+						$('.titleItems .back-face').css({
+							color: color2
+						});
+						$('.titleItems .front-face').css({
+							color: color1
+						});
+					}
+					counter++;
+					if (counter > 100) {
+						counter = 0;
+					}
+				}
+			});
+		</script>
+		
+	</body>
+</html>
+

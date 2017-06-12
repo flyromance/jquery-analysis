@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="../jquery-2.0.3.js"></script>
+    <script>
+    /*jQuery.extend({
+                    
+                    Deferred : function(){},
+                    when : function(){}
+                    
+                });
+
+                $.Deferred();   ->   $.Callbacks();
+                $.when();*/
+
+
+    // var cb = $.Callbacks();
+
+    // setTimeout(function(){
+
+    //  alert(111);
+    //  cb.fire();
+
+    // },1000);
+
+    // cb.add(function(){
+    //  alert(222);
+    // });
+
+
+    /*var dfd = $.Deferred();
+
+    setTimeout(function(){
+        
+        alert(111);
+        dfd.notify();
+        
+    },1000);
+
+    dfd.progress(function(){
+        alert(222);
+    });*/
+
+
+    /*$.ajax({
+        url : 'xxx.php',
+        success : function(){
+            alert('成功');
+        },
+        error : function(){
+            alert('失败');
+        }
+    });*/
+
+
+    //$.ajax('xxx.php').done(function(){ alert('成功'); }).fail(function(){ alert('失败'); });
+
+
+    // var dfd = $.Deferred();
+
+    // setTimeout(function(){
+
+    //  //alert(111);
+    //  //dfd.resolve();
+    //  dfd.reject();
+
+    // },1000);
+
+    // dfd.always(function(){
+    //     alert(112);
+    // }).done(function(){
+    //  alert('成功');
+    // }).fail(function(){
+    //  alert('失败');
+    // });
+
+
+
+    // var dfd = $.Deferred();
+
+    // setInterval(function(){
+
+    //  // alert(111);
+    //  dfd.resolve();
+    //  //dfd.reject();
+    //  // dfd.notify();
+
+    // },1000);
+
+    // dfd.done(function(){
+    //  console('成功');
+    // }).fail(function(){
+    //  alert('失败');
+    // }).progress(function(){
+    //  alert('进度中');
+    // });
+
+
+
+
+    /*$(function(){
+        
+        var cb = $.Callbacks('memory');
+
+        cb.add(function(){
+            alert(1);
+        });
+        
+        cb.fire();
+        
+        $('input').click(function(){
+            
+            cb.add(function(){
+                alert(2);
+            });
+            
+        });*/
+
+
+    /*  var dfd = $.Deferred();
+
+        setTimeout(function(){
+            
+            alert(111);
+            dfd.resolve();
+            
+        },1000);
+        
+        dfd.done(function(){
+            alert('aaa');
+        });
+        
+        $('input').click(function(){
+            
+            dfd.done(function(){
+                alert('bbb');
+            });
+            
+        });
+        
+        
+    });
+
+
+    done
+    fail
+    progress
+
+    resolve
+    reject
+    notify*/
+
+
+
+
+    /*function aaa(){
+        
+        var dfd = $.Deferred();
+        
+        alert( dfd.state() );
+        
+        setTimeout(function(){
+            
+            dfd.resolve();
+            
+            alert( dfd.state() );
+            
+        },1000);
+        
+        
+        return dfd.promise();
+        
+    }
+
+    var newDfd = aaa();
+
+    newDfd.done(function(){
+        alert('成功');
+    }).fail(function(){
+        alert('失败');
+    });*/
+
+    //newDfd.reject();
+
+
+    //alert(i^1);
+
+
+
+    /*var dfd = $.Deferred();
+
+    setTimeout(function(){
+        
+        //dfd.resolve();
+        dfd.reject('hi');
+        
+    },1000);*/
+
+    /*dfd.always(function(){
+        
+        
+        alert('hello');
+        
+        
+    });*/
+
+
+
+    // var dfd = $.Deferred();
+    // var dfd1 = $.Deferred();
+
+    // setTimeout(function(){
+
+    //  dfd.resolve(1);
+
+    // },1000);
+
+    // var newDfd = dfd.then(function(){
+    //  console.log(arguments[0]);
+    //  return arguments[0];
+    // }).then(function(){
+    //  console.log(arguments[0] + 1);
+    //  return arguments[0] + 1;
+    // }).then(function(){
+    //  console.log(arguments[0] + 1);
+    // });
+
+
+
+    // var dfd = $.Deferred();
+
+    // dfd.then(function(a){
+    //  alert(a);
+    // }, function(a){
+    //  alert(a);
+    // }).then(function(a){
+    //  alert(a);
+    // }, function(a){
+    //  alert(a)
+    // });
+
+    // dfd.reject('fanlong');
+
+    var dfd1 = $.Deferred().notify('notify');
+    var dfd2 = $.Deferred().resolve('resolve');
+    var dfd3 = $.Deferred().resolve('resolve1');
+    console.log(dfd1.state());
+    // function aaa() {
+    //     return $.Deferred().resolve('fanlong');
+    // }
+
+    // function bbb() {
+    //     return $.Deferred().resolve('shibai');
+    // }
+
+    // function ccc() {
+    //     return $.Deferred().notify('ddd');
+    // }
+
+    $.when(dfd1, dfd2, dfd3)
+        .fail(function(a) {
+            console.log(this);
+            console.log(arguments);
+        })
+        .done(function(a) {
+            console.log(this);
+            console.log(arguments);
+        })
+        .progress(function(a, b, c) {
+            console.log(this);
+            console.log(arguments);
+        });
+    dfd1.reject(123);
+    </script>
+</head>
+
+<body>
+    <input type="button" value="点击" onclick="">
+</body>
+
+</html>

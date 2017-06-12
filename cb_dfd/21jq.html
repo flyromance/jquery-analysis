@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="../jquery-2.0.3.js"></script>
+<script>
+
+function getCb(param) {
+	return $.Callbacks(param);
+}
+
+/*
+function aaa(){
+	alert(1);
+}
+
+function bbb(){
+	alert(2);
+}
+
+function ccc(){
+	alert(3);
+}
+
+var cb = $.Callbacks();
+
+cb.add( aaa );
+cb.add( [bbb, ccc] ); // 支持多个参数或者传数组
+
+cb.fire();
+*/
+
+
+/*
+var cb = $.Callbacks();
+
+function aaa(){
+	alert(1);
+}
+
+cb.add(aaa);
+
+(function(){
+	
+	function bbb(){
+		alert(2);
+	}
+	cb.add(bbb);
+	
+})();
+
+cb.fire();
+*/
+
+
+/*
+// 参数测试
+function aaa(){
+	alert(1);
+}
+
+function bbb(){
+	alert(2);
+}
+
+function ccc(){
+	alert(3);
+}
+
+var cb = $.Callbacks(); 
+// var cb = $.Callbacks('once'); 
+// var cb = $.Callbacks('memory'); 
+// var cb = $.Callbacks('once memory'); 
+
+cb.add( aaa );
+cb.fire();
+cb.add(bbb, ccc);
+cb.fire();
+
+// param：""	result: 1,1,2,3
+// param: 'once'	result: 1
+// param: 'memory'	result: 1,2,3,1,2,3
+// param: 'once memory' result: 1,2,3
+*/
+
+
+/*
+// 参数测试、在回调中add函数
+function aaa(){
+	alert(1);
+	cb.add(bbb);
+}
+
+function bbb(){
+	alert(2);
+}
+
+function ccc(){
+	alert(3);
+}
+
+// var cb = $.Callbacks();
+// var cb = $.Callbacks('once'); 
+// var cb = $.Callbacks('memory'); 
+var cb = $.Callbacks('once memory'); 
+
+cb.add( aaa );
+cb.fire();
+cb.add(ccc);
+cb.fire();
+
+// param：""  result: 1,2,1,2,3,2
+// param: 'once'  result: 1,2;	之后执行cb.disable()
+// param: 'memory'  result: 1,2,3,1之后add(bbb),2,3,2
+// param: 'once memory'  result: 1, 2, fire执行完后:list=[], 3, add执行完后:list=[], fire无法执行
+*/
+
+
+
+// 参数测试、在回调中fire()、有问题
+function aaa(){
+	alert(1);
+	return false;
+}
+
+function bbb(){
+	alert(2);
+}
+
+function ccc(){
+	alert(3);
+}
+
+// var cb = $.Callbacks();
+// var cb = $.Callbacks('once'); 
+var cb = $.Callbacks('memory'); 
+// var cb = $.Callbacks('once memory'); 
+
+cb.add(aaa, bbb);
+cb.fire();
+cb.add(ccc);
+cb.fire();
+
+// param：""  result: 死循环
+// param: 'once'  result: 1,2;	之后执行cb.disable()
+// param: 'memory'  result: 1,2,3,1之后add(bbb),2,3,2
+// param: 'once memory'  result: 1, 2, 3
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

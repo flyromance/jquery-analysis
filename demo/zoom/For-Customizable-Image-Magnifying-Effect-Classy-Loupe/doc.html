@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>ClassyLoupe jQuery plugin | Class.PM</title>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic" />
+        <link rel="stylesheet" href="css/documentation.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/jquery.mousewheel.js"></script>
+        <script src="js/jquery.easing.1.2.js"></script>
+        <script src="js/jquery.classyloupe.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jquery.classyloupe.min.css" />
+    </head>
+    <body>
+        <div id="page-container">
+            <div id="main-container">
+                <div id="page-content">
+                    <div class="content-header">
+                        <div class="header-section">
+                            <h1>ClassyLoupe<br><small>Zooming images, the fun way!</small></h1>
+                        </div>
+                    </div>
+                    <ul class="breadcrumb breadcrumb-top">
+                        <li><a href="http://www.class.pm/"><i class="fa fa-home"></i> Class.PM</a></li>
+                        <li><a href="http://www.class.pm/#jquery">jQuery plugins</a></li>
+                        <li>ClassyLoupe</li>
+                    </ul>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="block">
+                                <div class="block-title">
+                                    <h2>Introduction</h2>
+                                </div>
+                                <div class="clearfix">
+                                    <p>ClassyLoupe is a <a href="http://www.jquery.com">jQuery</a> plugin written by <a href="http://www.class.pm">Marius Stanciu - Sergiu</a>, a plugin that gives you the ability to add zoom on hover ability for your photos with single line of code.</p>
+                                    <p>With ClassyLoupe you have the ability to control the zoom level and loupe size via mouse scroll which gives you the opportunity to enlarge areas that you might be interested in.</p>
+                                    <p>
+                                        <a href="http://www.class.pm/cloud/public.php?service=files&t=ff29f3bc899a0e4b06825c7e02109f3f&download" class="btn btn-primary">
+                                            <i class="fa fa-folder-open"></i> Download it
+                                        </a>
+                                    </p>
+                                    <div class="alert alert-info">
+                                        <h4><i class="fa fa-info-circle"></i> License</h4>
+                                        This jQuery plugin is distributed under the <a href="http://www.class.pm/LICENSE-MIT">MIT license</a>. Enjoy!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="block">
+                                <div class="block-title">
+                                    <h2>Demo</h2>
+                                </div>
+                                <div class="clearfix">
+                                    <a href="#">
+                                        <img alt="" src="images/demo/image1.jpg" id="loupe1" />
+                                    </a>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#loupe1').ClassyLoupe({
+                                                maxSize: 600,
+                                                size: 160,
+                                                loupeToggleSpeed: 'fast'
+                                            });
+                                        });
+                                    </script>
+                                    <br /><br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="block">
+                                <div class="block-title">
+                                    <h2>Setup</h2>
+                                </div>
+                                <div class="clearfix">
+                                    <p>First you need to include the jQuery library, since ClassyLoupe is a plugin. You can download it from the <a href="http://www.jquery.com">jQuery website</a> or link it directly from the Google CDN. Also, you'll need the jquery.mousewheel and jquery.easing plugins, and those files are already in the package ready to be included.</p>
+                                    <pre>&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery.mousewheel.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery.easing.1.2.js"&gt;&lt;/script&gt;</pre>
+                                    <p>Secondly, you need to include the jQuery ClassyLoupe javascript and the css file into your page. You can do it by adding the code below to your page.</p>
+                                    <pre>&lt;script src="js/jquery.classyloupe.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="css/jquery.classyloupe.min.css" /&gt;</pre>
+                                    <p>Next, you implement the actual image(s) that will be magnified/zoomed by the Loupe. The structure is as simple as it can get.</p>
+                                    <pre>&lt;a href="#"&gt;
+    &lt;img alt="Your image caption" src="your-image.jpg" class="louped" /&gt;
+&lt;/a&gt;</pre>
+                                    <p>As the last step, you trigger the <em>ClassyLoupe()</em> function on the element you just created. In this case, we trigger the function on the image with the class <em>louped</em>.</p>
+                                    <pre>$('.louped').ClassyLoupe({
+    maxSize: 600,
+    loupeToggleSpeed: 'fast'
+});</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="block">
+                                <div class="block-title">
+                                    <h2>Options</h2>
+                                </div>
+                                <div class="clearfix">
+                                    <ul class="fa-ul">
+                                        <li>
+                                            <h3>Parameters</h3>
+                                            <hr />
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">shape</span> - the shape of the loupe, can be <span class="label label-success">circle</span>, <span class="label label-success">rounded</span> or <span class="label label-success">square</span>, default is <span class="label label-primary">circle</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">glossy</span> - if the loupe is glossy or not, can be <span class="label label-success">true</span> or <span class="label label-success">false</span>, default is <span class="label label-primary">true</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">shadow</span> - if the loupe will have a drop-shadow effect, can be <span class="label label-success">true</span> or <span class="label label-success">false</span>, default is <span class="label label-primary">true</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">trigger</span> - the mouse event that will trigger the loupe effect, default is <span class="label label-primary">mouseenter</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">roundedCorners</span> - does the loupe have rounded corners (if square shape), default is <span class="label label-primary">10</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">size</span> - loupe size, width and height, default is <span class="label label-primary">200</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">minSize</span> - minimul loupe size, default is <span class="label label-primary">150</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">maxSize</span> - maximum loupe size, default is <span class="label label-primary">250</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">resize</span> - can be <span class="label label-success">true</span> or <span class="label label-success">false</span>, default is <span class="label label-primary">true</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">sizeSnap</span> - , default is <span class="label label-primary">10</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">canZoom</span> - can be <span class="label label-success">true</span> or <span class="label label-success">false</span>, default is <span class="label label-primary">true</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">zoom</span> - , default is <span class="label label-primary">100</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">minZoom</span> - , default is <span class="label label-primary">50</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">maxZoom</span> - , default is <span class="label label-primary">200</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">zoomSnap</span> - , default is <span class="label label-primary">5</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">overlay</span> - can be <span class="label label-success">true</span> or <span class="label label-success">false</span>, default is <span class="label label-primary">true</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">overlayOpacity</span> - , default is <span class="label label-primary">0.5</span>
+                                        </li>
+                                        <li>
+                                            <span class="label label-danger">overlayClassName</span> - 
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="block">
+                                <div class="block-title">
+                                    <h2>Example</h2>
+                                </div>
+                                <div class="clearfix">
+                                    <pre>$('#loupe2').ClassyLoupe({
+    overlayClassName: 'overlay_img',
+    shape: 'rounded',
+    size: 160,
+    minSize: 200,
+    maxSize: 400,
+    sizeSnap: 25,
+    canZoom: false
+});</pre>
+                                    <pre>$('#loupe5').ClassyLoupe({
+    size: 160,
+    overlay: false,
+    shape: 'rounded',
+    canZoom: false,
+    resize: false
+});</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="clearfix">
+                    <div class="pull-left">
+                        <span>2005 - 2014</span> © <a href="http://www.class.pm" target="_blank">Class.PM</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-30825160-1', 'class.pm');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

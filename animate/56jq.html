@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <style>
+    #div1 {
+        width: 200px;
+        height: 200px;
+        background: red;
+        position: absolute;
+    }
+    </style>
+    <script src="../jquery-2.0.3.js"></script>
+    <script>
+    $(function() {
+
+        $('input').click(function(){
+       
+        	// return;
+
+        	// 一个接一个
+        	$('#div1').animate({ width : 300 }, 1000);
+        	$('#div1').animate({ height : 300 }, 1000);
+        	$('#div1').animate({ left : 300 }, 1000);
+
+        	// 一起运动
+        	$('#div1').animate({ width : 300 }, {queue: false});
+        	$('#div1').animate({ height : 300 }, {queue: false});
+        	$('#div1').animate({ left : 300 }, {queue: false});
+        	
+        });
+
+        //jQuery.fx.off = true;  //关闭页面所有的运动
+
+        $('input').click(function() {
+
+        	return;
+            $('#div1').animate({ opacity : 0.5 }, 1000, 'linear',function(){
+            	console.log(arguments);
+            }).animate({
+                width: "400px"
+            }, {
+                duration: 'slow',
+                easing: 'linear',
+                complete: function() {
+                	console.log(arguments);
+                }
+            });
+
+        });
+
+        $(document).queue('xxx', function() {
+        	console.log(1);
+        }).dequeue('xxx').delay(2000, 'xxx').dequeue('xxx').queue('xxx', function() {
+        	console.log(3);
+        });
+
+    });
+    </script>
+</head>
+
+<body>
+    <input type="button" value="点击">
+    <div id="div1"></div>
+</body>
+
+</html>

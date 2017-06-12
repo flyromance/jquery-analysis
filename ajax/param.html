@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form1">
+        <input type="text" name="name" />
+        <br/>
+        <input type="text" name="password" disabled="" />
+        <br/>
+        <input type="checkbox" name="hobby" value="basketball" />
+        <br/>
+        <input type="checkbox" name="hobby" value="football" />
+        <br/>
+        <input type="submit" value="submit">
+    </form>
+    <form id="form1">
+        <input type="text" name="name" />
+        <br/>
+        <input type="text" name="password" disabled="" />
+        <br/>
+        <input type="checkbox" name="hobby" value="basketball" />
+        <br/>
+        <input type="checkbox" name="hobby" value="football" />
+        <br/>
+        <input type="submit" value="submit">
+    </form>
+    <button id="btn">click me</button>
+    <script type="text/javascript" src='./jquery-2.0.3.js'></script>
+    <script type="text/javascript">
+    var test1 = [{
+            name: 'a',
+            value: '1'
+        }, {
+            name: 'b',
+            value: 2
+        }],
+        test2 = {
+            a: 1,
+            b: 2
+        },
+        test3 = [{
+            name: 'a',
+            value: [1, 2]
+        }, {
+            name: 'b',
+            value: [3, 4]
+        }],
+        test4 = {
+            a: [1, 2],
+            b: [3, 4]
+        },
+        test5 = {
+        	a: {a1: 1, a2: 2}
+        },
+        test6 = {
+        	a: [{a1: 1}, {a2: 2}]
+        };
+    console.log(decodeURIComponent($.param(test1)));
+    console.log(decodeURIComponent($.param(test2)));
+    console.log(decodeURIComponent($.param(test3)));
+    console.log(decodeURIComponent($.param(test3), true));
+    console.log(decodeURIComponent($.param(test4)));
+    console.log(decodeURIComponent($.param(test4, true)));
+    console.log(decodeURIComponent($.param(test5)));
+    console.log(decodeURIComponent($.param(test6)));
+    $('#btn').click(function() {
+        console.log(123);
+        console.log($('form').serialize());
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+
+<body>
+    <pre>
+    // 不能冒泡, 所有浏览器都支持
+    focus/blur : { 
+        trigger : function () {
+
+        },
+        delegateType : 'focusin/focusout' // 事件委托绑定方式，把special转为引用 $.event.focusin，绑定是focusin方法
+        // 没有bindType，所以非委托绑定时，是用的focus绑定的
+    }
+
+    // 冒泡，chrome浏览器不支持, ie(6-10)都支持,  'onfocusin' in window 来判断
+    // 使用起来和click事件一致
+    focusin/focusout: { 
+        setup : function () {
+            // document.addEventListener('focus', handler, true); 事件捕获
+        },
+        teardown : function () {
+
+        }
+    }
+    </pre>
+    <div id="div1">
+        <input id="input1" type="text">
+        <p id="p">this is div</p>
+        <a id='a' href="http://www.baidu.com">aaaaaa
+            <input id="input2" type="text">
+        </a>
+    </div>
+    <!--<input type="checkbox" id="input1">-->
+    <script>
+    // 不能绑定到document，不生效
+    // 结果是：3，因为focus不支持冒泡
+    // window.onfocus = function () {console.log(1);}
+    // document.documentElement.onfocus = function () {console.log(2);}
+    // document.body.onfocus = function () {console.log(3)}
+
+    function focus(xx) {
+
+        // 无效
+        $('#div1').on('focus', function() {
+            console.log('focus.div');
+        });
+
+        $('#input1').on('focus', function() {
+            console.log('focus.input1');
+        });
+
+        $('#input2').on('focus', function() {
+            console.log('focus.input2');
+        });
+
+        $('#a').on('focus', function() {
+            console.log('focus.a');
+        });
+
+        $('input').trigger('focus');
+    }
+
+    function focusDelegate() {
+
+        // foucs事件，背后的原理是利用focusin
+        $('#div1').on('focus', '#input1', function() {
+            console.log('focus.delegate.input1');
+        });
+
+        $('#div1').on('focus', '#input2', function() {
+            console.log('focus.delegate.input2');
+        });
+    }
+
+    function focusin() {
+        
+        // 其实，jquery内部没有绑定focusin事件，因为没有这种非标准事件
+        // 如下：内部是绑定的focus事件，并且是绑定到document上的，用的是 “事件捕获”：每次触发，从document开始触发
+        // 但是event.target还是最底层那个元素
+        // 先捕获 -> target -> 再冒泡
+        // document.addEventListener('focus', function() {
+        //     console.log(123);
+        // });
+
+        $('#div1').on('focusin', function() {
+            console.log('focusin.div');
+        });
+
+        $('#input1').on('focus', function() {
+            console.log('focus.input1');
+        });
+
+        $('#input1').on('focusin', function() {
+            console.log('focusin.input1');
+        });
+
+        $('#input2').on('focusin', function() {
+            console.log('focusin.input2');
+        });
+
+        $('#a').on('focusin', function() {
+            console.log('focusin.a');
+        });
+    }
+
+    // focus();
+    focusDelegate();
+    // focusin();
+    </script>
+</body>
+
+</html>

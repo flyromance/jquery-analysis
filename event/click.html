@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>无标题文档</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script>
+        // input 的点击与change事件先后顺序
+        // 
+
+        $(function () {
+
+            $(document).on('xxxx.abc', function (e, data) {
+                console.log(e, this, data, 4);
+            });
+
+            $(document).on('xxxx.abc', '#span1', function(e, data) {
+                console.log(e.target, this, data, 3);
+            });
+
+            $(document).on('click', function(e) {
+                console.log(e.currentTarget, this);
+            });
+
+            $(document).on('click', '#div1', function(e) {
+                console.log(e.currentTarget, this, e.target);
+            });
+
+            $(document).on('click', '#span1', function(e) {
+                // e.stopImmediatePropagation(); 
+                console.log(e.currentTarget, this);
+            });
+
+            $(document).on('click', '#span1', function(e) {
+                console.log(e.currentTarget, this);
+            });
+
+//            $('#div1').on('click', function(e) {
+//                console.log(e);
+//            });
+//
+//            $('#div1').on('click', '#span1', function(e) {
+//                console.log(e);
+//            });
+
+            // $('#span1').on('click', function(e) {
+            //     console.log(e.which, e.originalEvent.which);
+            //     e.stopImmediatePropagation();
+            // });
+
+            // $('#span1').on('click', function(e) {
+            //     console.log(e, 1);
+            // });
+
+
+//
+//            $('#div1').on('xxxx', {name: "click"}, function (e, data) {
+//                console.log(e.target, this, data, 2);
+//            });
+//
+//            $('#div1').on('xxxx', '#span1', {name: 'xxxx'}, function(e, data) {
+//                console.log(e.target, this, data, 1);
+//            });
+
+//            $('#span1').trigger('xxxx.abc', 'fan');
+
+//            $('#div1').triggerHandler('xxxx', 'fan');
+
+            /*$('#div1').click({name: 'xxx'}, function(){
+             alert(123);
+             });*/
+
+            /*$('#div1').on('click',{name:'hello'},function(ev){
+             alert(ev.data.name);
+             });*/
+
+            // $('ul').delegate('li', 'click', {name:'hello'}, function(ev){
+            //     $(this).css('background','red');
+            //     console.log(ev.data.name);
+            // });
+
+            /*$('ul').on('click', 'li', {name:'hello'}, function(ev){
+             $(this).css('background','red');
+             console.log(ev.data.name);
+             });*/
+
+            /*$('#div1').on('click',function(){
+             alert(123);
+             });
+             $('#div1').on('mouseover',function(){
+             alert(456);
+             });*/
+
+            /*$('#div1').on({
+             'click' : function(){
+             alert(123);
+             },
+             'mouseover' : function(){
+             alert(456);
+             }
+             });*/
+
+            /*$('#div1').one('click',function(){
+             alert(123);
+             });*/
+
+            /*	$('#input1').focus(function(){
+             $(this).css('background','red');
+             });
+
+             //$('#input1').trigger('focus');
+             $('#input1').triggerHandler('focus');   //不会触发当前事件的默认行为
+             */
+
+            // $('#input1')[0].onfocus = function () {
+            // 	console.log(1);
+            // };
+
+//	$('body').on('focus', '#input1', function(e){
+//		console.log('body');
+//		console.log(e.target);
+//	});
+//
+//	$('#div1').on('focus', function (e){
+//		console.log(1);
+//		console.log(e.target);
+//	});
+//
+//	$('#div1').trigger('focus');
+//
+
+        });
+
+    </script>
+</head>
+
+<body>
+<div id="div1">
+    <span id="span1">div child span</span><br/>
+    <input type="text" id="input1">
+    <input type="text" id="input2">
+</div>
+<ul>
+    <li>11111</li>
+    <li>11111</li>
+    <li>11111</li>
+    <li>11111</li>
+</ul>
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    var dfd = $.Deferred();
+    setTimeout(function(){
+        alert(123);
+//        dfd.resolve();
+//        dfd.reject();
+        dfd.notify();
+    },1000);
+
+//    dfd.done(function(){alert('success')}).fail(function(){alert('fail')}).progress(function(){alert('progress')});
+
+    var newDfd = dfd.then(function(){alert('success')},function(){alert('failed')})
+            .always(function(){alert('always')});
+//            .progress(function(){alert('progress')});
+    console.log(newDfd == dfd);
+
+</script>
+</body>
+</html>

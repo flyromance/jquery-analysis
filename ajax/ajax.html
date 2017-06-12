@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <!--<script src="http://s7.qhimg.com/static/8db6b82b8e7dae67/jquery,require,qw.core.js"></script>-->
+    <script type="text/javascript">
+
+        $(function () {
+            // get 请求
+//            $('#div1').load('ul.html', function (a, b, c) {
+//                // 加载完的回调函数
+//                // a: data
+//                // b: 状态
+//                // c: jq-ajax对象
+//            });s
+
+            // 传输数据，请求类型从get变为post；
+//            $("#div1").load("data1.php", {'name': 'fanlong'}, function (a, b, c) {
+//                // this是指什么？
+//            });
+
+            // 与上面的不一样
+//            $(window).load(function () {});
+
+//            $.ajax({
+//                type: 'post',
+//                url: 'data1.php',
+//                dataType: 'jsonp',
+//                success: function(data, status, jqAjax){
+//                    console.log(data);
+//                    console.log(status);
+//                    console.log(jqAjax);
+//                }
+//            });
+
+
+
+
+            /**
+             * $.getScript
+             *
+             * dataTypes: [script] 通过inspectPrefiltersOrTransports方法dataTypes被转为 [script json]
+             *
+             *
+             * completed的出现时为了解决always执行时参数不定（失败和成功的参数是不一样的问题）
+             * */
+            //        $.getScript('http://s4.qhres.com/static/b503fb49a46ae538.js', function(data, statusText, jqXHR) {
+            //            console.log(jqXHR);
+            //        }).complete(function(){
+            //            console.log('complete');
+            //        }).always(function(){
+            //            console.log('always');
+            //        }).done(function (data, statusText, jqXHR) {
+            //            console.log(statusText);
+            //        });
+
+
+            /**
+             * jsonp 请求
+             *
+             * dataTypes: [jsonp] 通过inspectPrefiltersOrTransports方法dataTypes被转为 [script json]
+             *
+             *
+             * completed的出现时为了解决always执行时参数不定（失败和成功的参数是不一样的问题）
+             * */
+            //                $.ajax({
+            //                    type: 'get',
+            //                    url: 'http://third.api.btime.com/News/list',
+            //                    data: {
+            //                        os: 'pc',
+            //                        net_level: 1,
+            //                        from: 'hao',
+            //                        uid: 1232312312312312,
+            //                        pid: 3,
+            //                        refresh_type: 2,
+            //                        page: 1,
+            //                        timestamp: new Date().getTime()
+            //                    },
+            //                    dataType: 'jsonp' // 被转为script json
+            //                }).complete(function(xhr) {
+            //                    console.log(xhr.getResponseHeader('Contend-Type'));
+            //                }).error(function(res, jqAjax) {
+            //
+            //                }).always(function() {
+            ////                    console.log(arguments[0]);
+            //                }).success(function(res, statusText, jqAjax) {
+            ////                    console.log(statusText);
+            //                });
+
+            /* ajax */
+            /*        $.ajax({
+             type: 'get',
+             dataType: 'json',
+             url: "http://pc.api.btime.com/messages/statistics",
+             xhrFields: { // 跨域设置，传cookie
+             withCredentials: true
+             },
+             crossDomain: true,
+             success: function (data) {
+
+             },
+             error: function () {
+
+             },
+             complete: function () {
+
+             }
+             });*/
+
+            // ajax
+            $(document).on('ajaxStart', function () {
+//                console.log(123, this);
+            });
+
+            $("#div-1").on('ajaxSend', function() {
+                console.log('ajaxSend');
+            });
+
+            $("#div-1").on('ajaxSuccess', function() {
+                console.log('ajaxSuccess');
+            });
+
+            $("#div-1").on('ajaxComplete', function() {
+                console.log('ajaxComplete');
+            });
+
+//            $(document).on('ajaxStop', function() {
+//                console.log(321);
+//            });
+
+            // 获取IP
+            $.ajax({
+                url: 'http://jsonip.com/',
+                context: '',
+                success: function (r, status, xhr) {
+                    console.log(r.ip, status);
+                },
+                type: 'get'
+            });
+
+
+            var ip = '218.30.116.4', // you can optionally put an ip address here
+                api = 'http://freegeoip.net/json/' + ip + '?callback=?';
+
+            // 获取JSON
+            //        $.getJSON(api, function(r){
+            //
+            //            console.log('How is the weather in ' + r.city + ', ' + r.country_name + '?');
+            //
+            //        });
+
+//        $.ajax({
+//            type: 'get',
+//            url: api,
+////            data: undefined,
+//            success: function (r) {
+//                console.log('How is the weather in ' + r.city + ', ' + r.country_name + '?');
+//            },
+//            dataType: 'json'
+//        });
+
+        });
+    </script>
+</head>
+<body>
+
+<div id="div-1">
+
+</div>
+<a id="link"></a>
+
+</body>
+</html>

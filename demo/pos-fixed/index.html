@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>第82款插件：jquery.pos-fixed.js让IE6支持fixed（绝对定位）效果和Firefox、Chrome一模一样</title>
+		<link rel="stylesheet" href="css.css" />
+		<link rel="stylesheet" href="http://www.ijquery.cn/css/ijquery.css" />
+		<script src="http://www.ijquery.cn/js/jquery-1.7.2.min.js"></script>
+		<script src="http://www.ijquery.cn/js/jquery.pos-fixed.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#posfixed1,#posfixed2').toFixed();
+			});
+		</script>
+		<style type="text/css">
+			.posfixed-l{position:fixed;left:10px;bottom:10px;display:block;width:115px;height:619px;}
+			.posfixed-r{position:fixed;right:10px;bottom:10px;display:block;width:115px;height:619px;}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			<h1>第82款插件：jquery.pos-fixed.js让IE6支持fixed（绝对定位）效果和Firefox、Chrome一模一样</h1>
+		</div>
+		<div id="container">
+			
+			<!--start-->
+			<div id="posfixed1" class="posfixed-l">
+				<img src="left.jpg" width="115" height="619" />
+			</div>
+			<div id="posfixed2" class="posfixed-r">
+				<img src="left.jpg" width="115" height="619" />
+			</div>
+			<!--end-->
+			
+			
+		</div>
+		<div id="footer"></div>
+	</body>
+</html>

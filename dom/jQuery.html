@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-2.0.3.js"></script>
+<script>
+    $(function(){
+        console.log( $('div').children() );  // 只返回元素节点，文本节点忽略
+        console.log( $('div').find('span') );  // 相当于调用$('div span), 直接调用Sizzle.find()方法
+
+    });
+</script>
+</head>
+<body>
+    <div class="div">class1<span>span1</span><span>span11</span></div>
+    <div class="div">class2<span>span2</span></div>
+    <div class="div">class3<span>span3</span></div>
+    <div class="div">class4<span>span4</span></div>
+    <div class="div">class5<span>span5</span></div>
+</body>
+</html>
